@@ -40,11 +40,69 @@
                             <constraint firstAttribute="bottom" secondItem="RtC-B9-t3V" secondAttribute="bottom" id="i5E-sh-DzA"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Contacts" id="9ht-Eg-OHW"/>
+                    <navigationItem key="navigationItem" title="Contacts" id="9ht-Eg-OHW">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="aQA-3m-8UL">
+                            <connections>
+                                <segue destination="qcw-ms-1PL" kind="presentation" id="c9k-bF-HGb"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1050.7246376811595" y="120.53571428571428"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="qCq-0e-owb">
+            <objects>
+                <viewController id="qcw-ms-1PL" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="CTt-aU-tNU">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eSD-VT-sL2">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="Hh1-e3-jlG"/>
+                                </constraints>
+                                <items>
+                                    <navigationItem title="New Contact" id="3U7-6r-6wj">
+                                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="qn9-Dc-evU"/>
+                                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="ZQD-Xb-lTE"/>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Czt-cA-HfG">
+                                <rect key="frame" x="40" y="124" width="334" height="88"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="First name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jJR-oF-uaz">
+                                        <rect key="frame" x="0.0" y="0.0" width="334" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Last name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XRN-sD-omf">
+                                        <rect key="frame" x="0.0" y="54" width="334" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="ank-Tk-aq1"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Czt-cA-HfG" firstAttribute="top" secondItem="eSD-VT-sL2" secondAttribute="bottom" constant="80" id="6HH-bf-b3E"/>
+                            <constraint firstItem="Czt-cA-HfG" firstAttribute="leading" secondItem="ank-Tk-aq1" secondAttribute="leading" constant="40" id="CZh-gr-ztn"/>
+                            <constraint firstItem="eSD-VT-sL2" firstAttribute="top" secondItem="ank-Tk-aq1" secondAttribute="top" id="Dya-pU-YpI"/>
+                            <constraint firstItem="eSD-VT-sL2" firstAttribute="leading" secondItem="ank-Tk-aq1" secondAttribute="leading" id="HlO-DR-hNc"/>
+                            <constraint firstItem="eSD-VT-sL2" firstAttribute="trailing" secondItem="ank-Tk-aq1" secondAttribute="trailing" id="RM5-tg-JfZ"/>
+                            <constraint firstItem="ank-Tk-aq1" firstAttribute="trailing" secondItem="Czt-cA-HfG" secondAttribute="trailing" constant="40" id="jx4-xO-pf6"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yye-L1-8cT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1932" y="121"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="FuX-za-7JZ">

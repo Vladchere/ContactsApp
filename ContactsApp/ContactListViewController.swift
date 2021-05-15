@@ -20,12 +20,13 @@ class ContactListViewController: UIViewController {
 
 // MARK: - UITAbleViewDataSource
 extension ContactListViewController: UITableViewDataSource {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         contacts.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Contact", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cellContact", for: indexPath)
         let contact = contacts[indexPath.row]
         cell.textLabel?.text = contact.fullName
         return cell

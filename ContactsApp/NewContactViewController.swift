@@ -7,12 +7,17 @@
 
 import UIKit
 
+protocol NewContactViewControllerDelegate {
+    func saveContact(_ contact: Contact)
+}
+
 class NewContactViewController: UIViewController {
     
     @IBOutlet var firstNameTextField: UITextField!
     @IBOutlet var lastNameTextField: UITextField!
     @IBOutlet var doneBarButtonItem: UIBarButtonItem!
     
+    var delegate: NewContactViewControllerDelegate?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,15 +36,17 @@ class NewContactViewController: UIViewController {
         doneBarButtonItem.isEnabled = !firstName.isEmpty ? true : false
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    @IBAction func cancelButtonPressed(_ sender: UIBarButtonItem) {
+        dismiss(animated: true)
     }
-    */
-
+    
+    @IBAction func doneButtonPressed(_ sender: UIBarButtonItem) {
+        let contact = Contact(
+            name: firstNameTextField.text ?? "Noname",
+            surname: lastNameTextField.text ?? ""
+            )
+        
+        delegate?.saveContact(contact)
+        dismiss(animated: true)
+    }
 }

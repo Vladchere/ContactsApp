@@ -74,8 +74,16 @@
                                 </constraints>
                                 <items>
                                     <navigationItem title="New Contact" id="3U7-6r-6wj">
-                                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="qn9-Dc-evU"/>
-                                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="ZQD-Xb-lTE"/>
+                                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="qn9-Dc-evU">
+                                            <connections>
+                                                <action selector="cancelButtonPressed:" destination="qcw-ms-1PL" id="BqF-wz-uDl"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="ZQD-Xb-lTE">
+                                            <connections>
+                                                <action selector="doneButtonPressed:" destination="qcw-ms-1PL" id="hWa-sR-Hbb"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>

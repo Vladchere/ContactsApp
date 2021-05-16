@@ -7,14 +7,27 @@
 
 import UIKit
 
-class ContactListViewController: UIViewController {
-
+class ContactListViewController: UIViewController, NewContactViewControllerDelegate {
+    
     @IBOutlet var tableView: UITableView!
     
     private var contacts: [Contact] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    // MARK: - Navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let newContactVC = segue.destination as! NewContactViewController
+        newContactVC.modalPresentationStyle = .fullScreen
+        
+        newContactVC.delegate = self
+    }
+    
+    func saveContact(_ contact: Contact) {
+        contacts.append(contact)
+        tableView.reloadData()
     }
 }
 
@@ -36,7 +49,6 @@ extension ContactListViewController: UITableViewDataSource {
 // MARK: - UITableViewDelegate
 extension ContactListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        
     }
 }
 

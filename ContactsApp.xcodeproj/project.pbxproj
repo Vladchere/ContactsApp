@@ -60,15 +60,15 @@
 		86B8DA03264ACA830011B2BE /* ContactsApp */ = {
 			isa = PBXGroup;
 			children = (
-				86B8DA04264ACA830011B2BE /* AppDelegate.swift */,
-				86B8DA06264ACA830011B2BE /* SceneDelegate.swift */,
 				86B8DA08264ACA830011B2BE /* ContactListViewController.swift */,
 				34C29096265049A70054B501 /* NewContactViewController.swift */,
-				86B8DA0A264ACA830011B2BE /* Main.storyboard */,
-				86B8DA0D264ACA850011B2BE /* Assets.xcassets */,
-				86B8DA0F264ACA850011B2BE /* LaunchScreen.storyboard */,
-				86B8DA12264ACA850011B2BE /* Info.plist */,
 				34C29094265023050054B501 /* Contact.swift */,
+				86B8DA0A264ACA830011B2BE /* Main.storyboard */,
+				86B8DA0F264ACA850011B2BE /* LaunchScreen.storyboard */,
+				86B8DA04264ACA830011B2BE /* AppDelegate.swift */,
+				86B8DA06264ACA830011B2BE /* SceneDelegate.swift */,
+				86B8DA0D264ACA850011B2BE /* Assets.xcassets */,
+				86B8DA12264ACA850011B2BE /* Info.plist */,
 			);
 			path = ContactsApp;
 			sourceTree = "<group>";

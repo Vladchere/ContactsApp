@@ -15,16 +15,22 @@ class ContactListViewController: UIViewController, NewContactViewControllerDeleg
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if let contactName = UserDefaults.standard.value(forKey: "ContactName") {
+            print(contactName as! String)
+        }
     }
+    
+    
     
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let newContactVC = segue.destination as! NewContactViewController
         newContactVC.modalPresentationStyle = .fullScreen
-        
         newContactVC.delegate = self
     }
     
+    // MARK: - Public method
     func saveContact(_ contact: Contact) {
         contacts.append(contact)
         tableView.reloadData()

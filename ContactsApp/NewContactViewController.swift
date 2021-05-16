@@ -41,11 +41,13 @@ class NewContactViewController: UIViewController {
     }
     
     @IBAction func doneButtonPressed(_ sender: UIBarButtonItem) {
-        let contact = Contact(
-            name: firstNameTextField.text ?? "Noname",
-            surname: lastNameTextField.text ?? ""
-            )
-        
+        saveAndExit()
+    }
+    
+    private func saveAndExit() {
+        let contact = Contact(name: firstNameTextField.text ?? "Noname",
+                              surname: lastNameTextField.text ?? "")
+        UserDefaults.standard.set(contact.fullName, forKey: "ContactName")
         delegate?.saveContact(contact)
         dismiss(animated: true)
     }

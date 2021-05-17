@@ -47,8 +47,11 @@ class NewContactViewController: UIViewController {
     private func saveAndExit() {
         let contact = Contact(name: firstNameTextField.text ?? "Noname",
                               surname: lastNameTextField.text ?? "")
+        
         UserDefaults.standard.set(contact.fullName, forKey: "ContactName")
+        
         delegate?.saveContact(contact)
+        
         dismiss(animated: true)
     }
 }

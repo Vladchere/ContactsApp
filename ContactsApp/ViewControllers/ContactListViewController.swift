@@ -17,12 +17,12 @@ class ContactListViewController: UIViewController, NewContactViewControllerDeleg
         super.viewDidLoad()
         
         if let contactName = UserDefaults.standard.value(forKey: "ContactName") {
-            print(contactName as! String)
+            print(contactName)
+            let contact = Contact(name: contactName as! String, surname: "")
+            contacts.append(contact)
         }
     }
-    
-    
-    
+
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let newContactVC = segue.destination as! NewContactViewController
@@ -55,8 +55,11 @@ extension ContactListViewController: UITableViewDataSource {
 // MARK: - UITableViewDelegate
 extension ContactListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        
+        if editingStyle == .delete {
+            UserDefaults.standard.removeObject(forKey: "ContactName")
+            contacts.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+        }
     }
 }
-
-
-

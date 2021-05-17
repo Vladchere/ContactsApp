@@ -15,11 +15,8 @@ class ContactListViewController: UIViewController, NewContactViewControllerDeleg
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        if let contactName = UserDefaults.standard.value(forKey: "ContactName") {
-            print(contactName)
-            let contact = Contact(name: contactName as! String, surname: "")
-            contacts.append(contact)
+        for name in StorageManager.shared.fetchContacts() {
+            contacts.append(Contact(name: name))
         }
     }
 
@@ -57,7 +54,7 @@ extension ContactListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         
         if editingStyle == .delete {
-            UserDefaults.standard.removeObject(forKey: "ContactName")
+            StorageManager.shared.deleteContact(at: indexPath.row)
             contacts.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .automatic)
         }

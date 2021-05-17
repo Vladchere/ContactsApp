@@ -48,7 +48,7 @@ class NewContactViewController: UIViewController {
         let contact = Contact(name: firstNameTextField.text ?? "Noname",
                               surname: lastNameTextField.text ?? "")
         
-        UserDefaults.standard.set(contact.fullName, forKey: "ContactName")
+        StorageManager.shared.saveContact(with: contact.fullName)
         
         delegate?.saveContact(contact)
         

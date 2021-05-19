@@ -9,15 +9,17 @@ import UIKit
 
 class ContactListViewController: UIViewController, NewContactViewControllerDelegate {
     
+    // MARK: - Outlets
     @IBOutlet var tableView: UITableView!
     
+    // MARK: - Private properties
     private var contacts: [Contact] = []
     
+    // MARK: - Lifecycle methods
     override func viewDidLoad() {
         super.viewDidLoad()
-        for name in StorageManager.shared.fetchContacts() {
-            contacts.append(Contact(name: name))
-        }
+        
+        contacts = StorageManager.shared.fetchContacts()
     }
 
     // MARK: - Navigation
@@ -27,7 +29,7 @@ class ContactListViewController: UIViewController, NewContactViewControllerDeleg
         newContactVC.delegate = self
     }
     
-    // MARK: - Public method
+    // MARK: - Public methods
     func saveContact(_ contact: Contact) {
         contacts.append(contact)
         tableView.reloadData()

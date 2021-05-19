@@ -7,9 +7,9 @@
 
 struct Contact: Codable {
     let name: String
+    let lastName: String
     
-    var surname: String = ""
     var fullName: String {
-        "\(name) \(surname)"
+        "\(name) \(lastName)"
     }
 }

@@ -45,11 +45,12 @@ class NewContactViewController: UIViewController {
     }
     
     private func saveAndExit() {
-        let contact = Contact(name: firstNameTextField.text ?? "Noname",
-                              surname: lastNameTextField.text ?? "")
+        guard let name = firstNameTextField.text else { return }
+        guard let lastName = lastNameTextField.text else { return }
         
-        StorageManager.shared.saveContact(with: contact.fullName)
-        
+        let contact = Contact(name: name, lastName: lastName)
+            
+        StorageManager.shared.saveContact(with: contact)
         delegate?.saveContact(contact)
         
         dismiss(animated: true)

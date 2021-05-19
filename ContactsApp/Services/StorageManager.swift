@@ -13,10 +13,18 @@ class StorageManager {
     
     private let userDefaults = UserDefaults.standard
     private let contactKey = "contacts"
+    private let documentsDirectory = FileManager.default.urls(
+        for: .documentDirectory,
+        in: .userDomainMask
+    ).first!
     
-    private init() {}
+    private var archiveURL: URL!
     
-    // Сохранение, получение и удаление из массива по индексу
+    private init() {
+        archiveURL = documentsDirectory.appendingPathComponent("Contact").appendingPathExtension("plist")
+    }
+    
+    // Сохранение, получение и удаление из массива по индексу(работаем со String)
     /*
     func fetchContacts() -> [String] {
         if let contacts = userDefaults.value(forKey: contactKey) as? [String] {
@@ -40,6 +48,7 @@ class StorageManager {
     */
     
     // Работа с любыми типами данных. Все что можно положить в Data
+    /*
     func fetchContacts() -> [Contact] {
         guard let data = userDefaults.object(forKey: contactKey) as? Data else { return [] }
         guard let contacts = try? JSONDecoder().decode([Contact].self, from: data) else { return [] }
@@ -60,5 +69,29 @@ class StorageManager {
         
         guard let data = try? JSONEncoder().encode(contacts) else { return }
         userDefaults.set(data, forKey: contactKey)
+    }
+    */
+    
+    // Работа с локальным файлом (plist)
+    func fetchContactsFromFile() -> [Contact] {
+        guard let data = try? Data(contentsOf: archiveURL) else { return []}
+        guard let contacts = try? PropertyListDecoder().decode([Contact].self, from: data) else { return [] }
+        return contacts
+    }
+    
+    func saveContactToFile(with contact: Contact) {
+        var contacts = fetchContactsFromFile()
+        contacts.append(contact)
+        
+        guard let data = try? PropertyListEncoder().encode(contacts) else { return }
+        try? data.write(to: archiveURL, options: .noFileProtection)
+    }
+    
+    func deleteContactFromFile(at index: Int) {
+        var contacts = fetchContactsFromFile()
+        contacts.remove(at: index)
+        
+        guard let data = try? PropertyListEncoder().encode(contacts) else { return }
+        try? data.write(to: archiveURL, options: .noFileProtection)
     }
 }

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ContactListViewController: UIViewController, NewContactViewControllerDelegate {
+class ContactListViewController: UIViewController {
     
     // MARK: - Outlets
     @IBOutlet var tableView: UITableView!
@@ -19,7 +19,7 @@ class ContactListViewController: UIViewController, NewContactViewControllerDeleg
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        contacts = StorageManager.shared.fetchContacts()
+        contacts = StorageManager.shared.fetchContactsFromFile()
     }
 
     // MARK: - Navigation
@@ -28,13 +28,8 @@ class ContactListViewController: UIViewController, NewContactViewControllerDeleg
         newContactVC.modalPresentationStyle = .fullScreen
         newContactVC.delegate = self
     }
-    
-    // MARK: - Public methods
-    func saveContact(_ contact: Contact) {
-        contacts.append(contact)
-        tableView.reloadData()
-    }
 }
+
 
 // MARK: - UITAbleViewDataSource
 extension ContactListViewController: UITableViewDataSource {
@@ -56,9 +51,17 @@ extension ContactListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         
         if editingStyle == .delete {
-            StorageManager.shared.deleteContact(at: indexPath.row)
+            StorageManager.shared.deleteContactFromFile(at: indexPath.row)
             contacts.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .automatic)
         }
+    }
+}
+
+// MARK: - NewContactViewControllerDelegate
+extension ContactListViewController: NewContactViewControllerDelegate {
+    func saveContact(_ contact: Contact) {
+        contacts.append(contact)
+        tableView.reloadData()
     }
 }

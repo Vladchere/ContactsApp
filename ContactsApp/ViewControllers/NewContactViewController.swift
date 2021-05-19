@@ -13,12 +13,15 @@ protocol NewContactViewControllerDelegate {
 
 class NewContactViewController: UIViewController {
     
+    // MARK: - Outlets
     @IBOutlet var firstNameTextField: UITextField!
     @IBOutlet var lastNameTextField: UITextField!
     @IBOutlet var doneBarButtonItem: UIBarButtonItem!
     
+    // MARK: - Public properties
     var delegate: NewContactViewControllerDelegate?
 
+    // MARK: - Lifecycle methods
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -31,11 +34,7 @@ class NewContactViewController: UIViewController {
         )
     }
     
-    @objc private func firstNameTextFieldDidChanged() {
-        guard let firstName = firstNameTextField.text else { return }
-        doneBarButtonItem.isEnabled = !firstName.isEmpty ? true : false
-    }
-    
+    // MARK: - Actions
     @IBAction func cancelButtonPressed(_ sender: UIBarButtonItem) {
         dismiss(animated: true)
     }
@@ -44,13 +43,19 @@ class NewContactViewController: UIViewController {
         saveAndExit()
     }
     
+    // MARK: - Private methods
+    @objc private func firstNameTextFieldDidChanged() {
+        guard let firstName = firstNameTextField.text else { return }
+        doneBarButtonItem.isEnabled = !firstName.isEmpty ? true : false
+    }
+    
     private func saveAndExit() {
         guard let name = firstNameTextField.text else { return }
         guard let lastName = lastNameTextField.text else { return }
         
         let contact = Contact(name: name, lastName: lastName)
             
-        StorageManager.shared.saveContact(with: contact)
+        StorageManager.shared.saveContactToFile(with: contact)
         delegate?.saveContact(contact)
         
         dismiss(animated: true)

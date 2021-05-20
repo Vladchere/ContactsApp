@@ -30,7 +30,6 @@ class ContactListViewController: UIViewController {
     }
 }
 
-
 // MARK: - UITAbleViewDataSource
 extension ContactListViewController: UITableViewDataSource {
     
